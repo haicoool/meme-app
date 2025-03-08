@@ -35,10 +35,10 @@ export default defineConfig({
             workbox: {
                 runtimeCaching: [
                     {
-                        urlPattern: /^https:\/\/www\.reddit\.com\/r\/(memes|196|shitposting|blursedimages|comedyhomicide)\/best\/.*$/,
+                        urlPattern: /^http:\/\/192\.168\.0\.9:3000\/.*/, // Update with your meme API
                         handler: "CacheFirst",
                         options: {
-                            cacheName: "reddit-api-cache",
+                            cacheName: "meme-api-cache",
                             expiration: {
                                 maxEntries: 50,
                                 maxAgeSeconds: 86400, // 1 day
