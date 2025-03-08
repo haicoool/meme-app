@@ -24,8 +24,8 @@ MemeApp is a fun and lightweight web app that lets users discover, like, and sav
 
 ## 🛠️ Tech Stack
 - **Frontend**: React (Vite, TypeScript, Tailwind CSS, Framer Motion)
-- **Backend**: Firebase Firestore (for sync), Proxy server for Reddit video downloads
-- **Other**: PWA support, LocalStorage fallback
+- **Backend**: Firebase Firestore and Reddit API
+- **Other**: PWA support
 
 ## 🚀 Getting Started
 
