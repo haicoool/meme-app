@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# MemeApp 🎉
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MemeApp is a fun and lightweight web app that lets users discover, like, and save random memes from Reddit. Built with **React + Vite + TypeScript**, it offers a seamless experience with PWA support, offline functionality, and an intuitive UI.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔥 **Random Memes** – Get fresh memes from Reddit instantly.
+- ❤️ **Like & Save Memes** – Syncs online (Firebase Firestore)
+- 📲 **PWA Support** – Installable on iOS and Android for a native-like experience.
+- 🎭 **User Authentication** – Easy login & profile management.
+- ⬇️ **Download Memes** – Save images and videos without CORS restrictions.
 
-## Expanding the ESLint configuration
+## 📱 How to Install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Android (Chrome)
+1. Open MemeApp in **Chrome**.
+2. Tap the **menu** button <img src="/icons/android-menu.svg" alt="Android Menu" width="18" height="18"> (three dots, top-right corner).
+3. Select **Add to Home Screen**.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### iPhone (Safari)
+1. Open MemeApp in **Safari**.
+2. Tap the **Share** button <img src="/icons/ios-share.svg" alt="iOS Share" width="18" height="18">.
+3. Scroll and tap **Add to Home Screen** <img src="/icons/ios-add-home.svg" alt="iOS Add Home" width="18" height="18">.
+
+## 🛠️ Tech Stack
+- **Frontend**: React (Vite, TypeScript, Tailwind CSS, Framer Motion)
+- **Backend**: Firebase Firestore (for sync), Proxy server for Reddit video downloads
+- **Other**: PWA support, LocalStorage fallback
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/yourusername/memeapp.git
+cd memeapp
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 2️⃣ Install Dependencies
+```bash
+yarn install  # or npm install
 ```
+
+### 3️⃣ Start the Development Server
+```bash
+yarn dev  # or npm run dev
+```
+
+### 4️⃣ Build for Production
+```bash
+yarn build  # or npm run build
+```
+
+## 🎨 UI Preview
+(Include a screenshot or GIF of the app in action)
+
+## 📜 License
+This project is licensed under the MIT License.
+
+---
+
+Enjoy your memes! 🚀
