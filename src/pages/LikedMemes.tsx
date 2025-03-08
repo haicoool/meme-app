@@ -9,52 +9,47 @@ const LikedMemes: React.FC = () => {
     const [likedMemes, setLikedMemes] = useState<DocumentData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const [userId, setUserId] = useState<string | null>(null);
     const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
-    // Fetch memes from Firestore when online
-    const fetchLikedMemes = async (userId: string) => {
-        setLoading(true);
-        try {
-            const q = query(
-                collection(db, "likedMemes"),
-                where("userId", "==", userId),
-                orderBy("createdAt", "desc")
-            );
-            const querySnapshot = await getDocs(q);
-            const memes: DocumentData[] = [];
-            querySnapshot.forEach((doc) => memes.push(doc.data()));
-            setLikedMemes(memes);
-
-            // Save to localStorage for offline access
-            localStorage.setItem("likedMemes", JSON.stringify(memes));
-        } catch (error) {
-            console.error("Error fetching liked memes:", error);
-        }
-        setLoading(false);
-    };
-
-    // Check auth state & fetch memes when online
+    // Listen for authentication changes
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                fetchLikedMemes(user.uid);
+                setUserId(user.uid);
             } else {
-                setLikedMemes([]);
+                setUserId(null);
+                setLikedMemes([]); // Clear memes if user logs out
             }
         });
 
         return () => unsubscribe();
     }, []);
 
-    // Load cached memes from localStorage when offline
+    // Fetch liked memes when userId is available
     useEffect(() => {
-        if (!navigator.onLine) {
-            const cachedMemes = localStorage.getItem("likedMemes");
-            if (cachedMemes) {
-                setLikedMemes(JSON.parse(cachedMemes));
+        if (!userId) return;
+
+        const fetchLikedMemes = async () => {
+            setLoading(true);
+            try {
+                const q = query(
+                    collection(db, "likedMemes"),
+                    where("userId", "==", userId),
+                    orderBy("createdAt", "desc")
+                );
+                const querySnapshot = await getDocs(q);
+                const memes: DocumentData[] = [];
+                querySnapshot.forEach((doc) => memes.push(doc.data()));
+                setLikedMemes(memes);
+            } catch (error) {
+                console.error("Error fetching liked memes:", error);
             }
-        }
-    }, []);
+            setLoading(false);
+        };
+
+        fetchLikedMemes();
+    }, [userId]); // Re-run when userId changes
 
     // Handle swipe gestures
     const handleTouchStart = (e: TouchEvent) => setTouchStartX(e.touches[0].clientX);
@@ -111,6 +106,7 @@ const LikedMemes: React.FC = () => {
                                     <img src={meme.url} alt="Meme" className="w-full h-full object-cover" />
                                 )}
 
+                                {/* Hover effect for title */}
                                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <p className="text-white text-sm px-2 text-center">{meme.title}</p>
                                 </div>
@@ -118,10 +114,12 @@ const LikedMemes: React.FC = () => {
                         ))}
                     </div>
 
+                    {/* Total Liked Memes Count */}
                     <p className="text-lg mt-4">Total Liked Memes: {likedMemes.length}</p>
                 </>
             )}
 
+            {/* Fullscreen Meme Modal with Swipe */}
             {selectedIndex !== null && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -150,6 +148,7 @@ const LikedMemes: React.FC = () => {
 
                         <p className="text-center text-gray-300 mt-2">{likedMemes[selectedIndex]?.title}</p>
 
+                        {/* Navigation Buttons */}
                         <div className="absolute inset-y-1/2 w-full flex justify-between px-4">
                             <button
                                 className={`p-2 bg-gray-700 text-white rounded-full ${selectedIndex === 0 ? "opacity-50" : ""}`}
