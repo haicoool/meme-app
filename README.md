@@ -14,12 +14,12 @@ MemeApp is a fun and lightweight web app that lets users discover, like, and sav
 
 ### Android (Chrome)
 1. Open MemeApp in **Chrome**.
-2. Tap the **menu** button <img src="public/icons/android-menu.svg" alt="Android Menu" width="18" height="18"> (three dots, top-right corner).
+2. Tap the **menu** button <img src="public/icons/android-menu.png" alt="Android Menu" width="18" height="18"> (three dots, top-right corner).
 3. Select **Add to Home Screen**.
 
 ### iPhone (Safari)
 1. Open MemeApp in **Safari**.
-2. Tap the **Share** button <img src="public/icons/ios-share.svg" alt="iOS Share" width="18" height="18">.
+2. Tap the **Share** button <img src="public/icons/ios-share.png" alt="iOS Share" width="18" height="18">.
 3. Scroll and tap **Add to Home Screen** <img src="public/icons/ios-add-home.png" alt="iOS Add Home" width="18" height="18">.
 
 ## 🛠️ Tech Stack
