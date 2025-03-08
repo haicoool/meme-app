@@ -17,7 +17,11 @@ const LandingPage = () => {
             answer: (
                 <ul className="list-disc pl-4 text-gray-400 text-sm">
                     <li>Open the app in <b>Chrome</b>.</li>
-                    <li>Tap the menu button (three dots, top-right).</li>
+                    <li className="flex items-center gap-2">
+                        Tap the menu button
+                        <img src="/icons/android-menu.png" alt="Android Menu" className="w-5 h-5" />
+                        (top-right corner).
+                    </li>
                     <li>Tap <b>Add to Home Screen</b>. Done!</li>
                 </ul>
             ),
@@ -27,8 +31,15 @@ const LandingPage = () => {
             answer: (
                 <ul className="list-disc pl-4 text-gray-400 text-sm">
                     <li>Open the app in <b>Safari</b>.</li>
-                    <li>Tap the <b>Share</b> button (square with an arrow).</li>
-                    <li>Scroll and tap <b>Add to Home Screen</b>. That’s it!</li>
+                    <li className="flex items-center gap-2">
+                        Tap the <b>Share</b> button
+                        <img src="/icons/ios-share.png" alt="iOS Share Icon" className="w-5 h-5" />
+                    </li>
+                    <li className="flex items-center gap-2">
+                        Scroll and tap <b>Add to Home Screen</b>
+                        <img src="/icons/ios-add-home.png" alt="Add to Home Screen Icon" className="w-5 h-5" />
+                    </li>
+                    <li>That’s it! 🎉</li>
                 </ul>
             ),
         },
@@ -43,6 +54,7 @@ const LandingPage = () => {
             ),
         },
     ];
+
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-950 text-white px-6">
